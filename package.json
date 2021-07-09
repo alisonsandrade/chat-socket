@@ -1,0 +1,14 @@
+{
+  "name": "chat-socket",
+  "version": "1.0.0",
+  "description": "Chat realtime feito com javascript e socket-io",
+  "main": "index.js",
+  "repository": "https://github.com/alisonsandrade/chat-socket.git",
+  "author": "Alison Andrade",
+  "license": "MIT",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "socket.io": "^4.1.2"
+  }
+}

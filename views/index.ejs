@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR"> 
+ <head>
+ <title>Chat - Socket.IO</title>
+ <meta name="description" content="Como usar as tags header, footer e article em HTML5">
+ <meta charset="utf-8">
+
+ <!-- Bootstrap 5.0 -->
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</head>
+
+<style>
+  body {
+    padding: 10px;
+    margin: 10px;
+  }
+  #chat {
+    max-height: 500px;
+    min-height: 500px;
+    background-color: beige;
+    overflow-y: scroll;
+  }
+  p {
+    padding: 10px;
+  }
+</style>
+
+ <body>
+   <h1>Chat - Socket.IO</h1>
+   <div id="chat">
+     
+   </div>
+   <hr>
+
+    <div class="mb-3">
+      <input type="text" name="" id="msg" class="form-control" placeholder="Digite a sua mensagem...">
+    </div>
+    <div class="mb-3">
+      <input type="text" name="" id="username" class="form-control" placeholder="Digite o seu usuário">
+    </div>
+
+    <div class="d-grid gap-2">
+      <button onclick="sendMessage()" class="btn btn-primary">Enviar</button>
+    </div>   
+  
+ 
+ </body>
+	<!-- CDN Socket-io Client -->
+	<script src="https://cdn.socket.io/4.1.2/socket.io.min.js" integrity="sha384-toS6mmwu70G0fw54EGlWWeA4z3dyJ+dlXBtSURSKN4vyRFOcxd3Bzjj/AoOwY+Rg" crossorigin="anonymous"></script>
+  <script>
+		const socket = io()
+
+    socket.on("showMsg", ({ message, username }) => {
+      const elChat = document.querySelector("#chat")
+      const p = document.createElement("p")
+      p.innerHTML = `${username}: ${message}`
+      chat.append(p)
+    })
+
+		socket.on("disconnect", () => {
+			console.log("Desconectou o socket")
+		})
+
+    function sendMessage() {
+      const message = document.querySelector("#msg").value
+      const username = document.querySelector("#username").value
+
+      socket.emit('msg', { message, username })
+    }
+	</script>
+</html>
